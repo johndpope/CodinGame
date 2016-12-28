@@ -1,4 +1,4 @@
-import me.fernandodoming.rps.models.GameResult;
+import me.fernandodoming.rps.models.Game;
 import me.fernandodoming.rps.models.Pick;
 import me.fernandodoming.rps.models.Player;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.ROCK);
         Player p2 = new Player(Pick.SCISSORS);
 
-        assertEquals("Rock should beat scissors", GameResult.WIN, p1.playWith(p2));
+        assertEquals("Rock should beat scissors", Game.GameResult.WIN, p1.playWith(p2));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.PAPER);
         Player p2 = new Player(Pick.ROCK);
 
-        assertEquals("Rock should beat scissors", GameResult.WIN, p1.playWith(p2));
+        assertEquals("Rock should beat scissors", Game.GameResult.WIN, p1.playWith(p2));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.SCISSORS);
         Player p2 = new Player(Pick.PAPER);
 
-        assertEquals("Rock should beat scissors", GameResult.WIN, p1.playWith(p2));
+        assertEquals("Rock should beat scissors", Game.GameResult.WIN, p1.playWith(p2));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.ROCK);
         Player p2 = new Player(Pick.ROCK);
 
-        assertEquals("Rock should beat scissors", GameResult.TIE, p1.playWith(p2));
+        assertEquals("Rock should beat scissors", Game.GameResult.TIE, p1.playWith(p2));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.SCISSORS);
         Player p2 = new Player(Pick.SCISSORS);
 
-        assertEquals("Rock should beat scissors", GameResult.TIE, p1.playWith(p2));
+        assertEquals("Rock should beat scissors", Game.GameResult.TIE, p1.playWith(p2));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.PAPER);
         Player p2 = new Player(Pick.PAPER);
 
-        assertEquals("Rock should beat scissors", GameResult.TIE, p1.playWith(p2));
+        assertEquals("Rock should beat scissors", Game.GameResult.TIE, p1.playWith(p2));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.PAPER);
         Player p2 = new Player(Pick.SCISSORS);
 
-        assertEquals("Paper should not beat scissors", GameResult.LOSE, p1.playWith(p2));
+        assertEquals("Paper should not beat scissors", Game.GameResult.LOSE, p1.playWith(p2));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class PlayerTest {
         Player p1 = new Player(Pick.SCISSORS);
         Player p2 = new Player(Pick.ROCK);
 
-        assertEquals("Scissors should not beat rock", GameResult.LOSE, p1.playWith(p2));
+        assertEquals("Scissors should not beat rock", Game.GameResult.LOSE, p1.playWith(p2));
     }
 
     @Test
@@ -79,6 +79,15 @@ public class PlayerTest {
         Player p1 = new Player(Pick.ROCK);
         Player p2 = new Player(Pick.PAPER);
 
-        assertEquals("Rock should not beat paper", GameResult.LOSE, p1.playWith(p2));
+        assertEquals("Rock should not beat paper", Game.GameResult.LOSE, p1.playWith(p2));
+    }
+
+    @Test
+    public void setPick() {
+        Player p1 = new Player();
+        Pick pick = Pick.getRandom();
+        p1.setPick(pick);
+
+        assertEquals("Unexpected pick returned", p1.getPick(), pick);
     }
 }

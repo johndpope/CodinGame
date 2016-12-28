@@ -24,14 +24,14 @@ public class Player {
         return pick;
     }
 
-    public GameResult playWith(Player another) {
+    public Game.GameResult playWith(Player another) {
         if (another == null) return null;
-        if (another.getPick() == this.pick) return GameResult.TIE;
+        if (another.getPick() == this.pick) return Game.GameResult.TIE;
 
         if (this.pick.beats( another.getPick() )) {
-            return GameResult.WIN;
+            return Game.GameResult.WIN;
         } else {
-            return GameResult.LOSE;
+            return Game.GameResult.LOSE;
         }
     }
 }

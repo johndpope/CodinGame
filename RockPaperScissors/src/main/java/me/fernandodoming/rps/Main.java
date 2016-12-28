@@ -1,6 +1,6 @@
 package me.fernandodoming.rps;
 
-import me.fernandodoming.rps.models.GameResult;
+import me.fernandodoming.rps.models.Game;
 import me.fernandodoming.rps.models.Pick;
 import me.fernandodoming.rps.models.Player;
 
@@ -15,10 +15,10 @@ public class Main {
     private static int N_GAMES = 100;
 
     public static void main(String[] args) {
-        Map<GameResult, Integer> p1Score = new HashMap<>();
-        p1Score.put(GameResult.WIN, 0);
-        p1Score.put(GameResult.LOSE, 0);
-        p1Score.put(GameResult.TIE, 0);
+        Map<Game.GameResult, Integer> p1Score = new HashMap<>();
+        p1Score.put(Game.GameResult.WIN, 0);
+        p1Score.put(Game.GameResult.LOSE, 0);
+        p1Score.put(Game.GameResult.TIE, 0);
 
         Player p1 = new Player();
         Player p2 = new Player();
@@ -29,13 +29,14 @@ public class Main {
             p1.setPick(Pick.PAPER);
             // p2 always chooses randomly
             p2.setPick(Pick.getRandom());
+            Game round = new Game(new Player[] {p1, p2});
 
-            GameResult result = p1.playWith(p2);
+            Game.GameResult result = round.play();
             p1Score.put(result, p1Score.get(result) + 1);
         }
 
-        System.out.println("Player A wins " + p1Score.get(GameResult.WIN) + " of " + N_GAMES + " games");
-        System.out.println("Player B wins " + p1Score.get(GameResult.LOSE) + " of " + N_GAMES + " games");
-        System.out.println("Tie: " + p1Score.get(GameResult.TIE) + " of " + N_GAMES + " games");
+        System.out.println("Player A wins " + p1Score.get(Game.GameResult.WIN) + " of " + N_GAMES + " games");
+        System.out.println("Player B wins " + p1Score.get(Game.GameResult.LOSE) + " of " + N_GAMES + " games");
+        System.out.println("Tie: " + p1Score.get(Game.GameResult.TIE) + " of " + N_GAMES + " games");
     }
 }
