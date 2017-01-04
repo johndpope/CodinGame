@@ -97,7 +97,7 @@ class GameViewController: NSViewController {
             vectorCount: points.count,
             usesFloatComponents: true,
             componentsPerVector: 3,
-            bytesPerComponent: MemoryLayout<Double>.size,
+            bytesPerComponent: MemoryLayout<Float>.size,
             dataOffset: 0,
             dataStride: MemoryLayout<PointCloudVertex>.size
         )
@@ -106,10 +106,10 @@ class GameViewController: NSViewController {
             semantic: SCNGeometrySource.Semantic.color,
             vectorCount: points.count,
             usesFloatComponents: true,
-            componentsPerVector: 3,
-            bytesPerComponent: MemoryLayout<CGFloat>.size,
-            dataOffset: MemoryLayout<Double>.size * 3,
-            dataStride: MemoryLayout<PointCloudVertex>.size
+            componentsPerVector: 4,
+            bytesPerComponent: MemoryLayout<Float>.size,
+            dataOffset: 0,
+            dataStride: MemoryLayout<float4>.size
         )
         let elements = SCNGeometryElement(
             data: nil,
