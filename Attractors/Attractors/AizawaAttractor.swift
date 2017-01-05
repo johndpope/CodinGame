@@ -28,12 +28,12 @@ class AizawaAttractor : Attractor {
         let gamma = 0.6, delta = 3.5, zeta = 0.1
         
         for _ in 1...self.n {
-            let dy = (delta * x + (z - beta) * y) * dt
-            let dx = ((z - beta) * x - dy) * dt
-            let dz = ( gamma + alpha * z - (pow(z,3)) / 3 - (pow(x,2) + pow(y,2)) * (1 + epsilon * z) + zeta * z * pow(x,3) ) * dt
-            x += dx
-            y += dy
-            z += dz
+            let dx = (z - beta) * x - delta * y
+            let dy = delta * x + (z - beta) * y
+            let dz = gamma + alpha * z - pow(z, 3)/3 - (pow(x, 2) + pow(y, 2)) * (1 + epsilon * z) + zeta * z * pow(x,3)
+            x += dx * dt
+            y += dy * dt
+            z += dz * dt
             
             points.append(SCNVector3(x: CGFloat(x), y: CGFloat(y), z: CGFloat(z)))
         }
